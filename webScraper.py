@@ -1,23 +1,29 @@
 import requests
 from bs4 import BeautifulSoup
 
-def findTitle():
-    URL= 'https://archive.org/details/gd89-10-19.nak.rob_r.7595.sbefail.shnf'
-    request=requests.get(URL)
 
-    #check that archive.org isnt down
-    if (request.status_code==404):
-        print('Something broke! please email: bkearney1@ycp.edu for some help!')
-        #TODO:improve error code finding, add mailto link
+def findTitle(year):
 
-    raw_page=request.text
-    soup= BeautifulSoup(raw_page, features="html.parser")
+    URL='https://archive.org/advancedsearch.php?q=collection%%3A%%28GratefulDead%%29+AND+date%%3A%%5B%d-01-01+TO+%d-12-31%%5D&fl%%5B%%5D=title&sort%%5B%%5D=date+asc&sort%%5B%%5D=&sort%%5B%%5D=&rows=1000&page=1&callback=callback&output=xml#raw'%(year,year)
+    result = requests.get(URL)
 
-    concert_title=soup.find('h1')
+    # check that archive.org isnt down
+    if (result.status_code != 200):
+        print('Something broke! please email: bkearney1@ycp.edu for some help! (archive.org is probably down)')
+        # TODO:improve error checking, add mailto link
 
-    pretty_string= concert_title.get_text()
+    xml_doc = result.content
+    soup = BeautifulSoup(xml_doc,"html.parser")
+    html_titles=str(soup.find_all('doc'))
 
-    print(pretty_string)
+    #TODO add show titles to a data structure
+    #clean the HTML off
+    html_titles=html_titles.replace('<doc>','')
+    html_titles = html_titles.replace('</doc>', '')
+    html_titles = html_titles.replace('</str>', '')
+    html_titles = html_titles.replace('<str name="title">', '')
+    html_titles = html_titles.replace('[','')
+    html_titles = html_titles.replace(']', '')
 
-    return pretty_string
+    print(html_titles)
 ()
