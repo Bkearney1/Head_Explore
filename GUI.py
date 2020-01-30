@@ -1,7 +1,7 @@
 #uses archiveSearch and makes a little GUI
 from tkinter import *
-import webbrowser
 import archiveSearcher
+import webScraper
 
 def run():
 
