@@ -10,7 +10,7 @@ def findTitle(year):
     # check that archive.org isnt down
     if (result.status_code != 200):
         print('Something broke! please email: bkearney1@ycp.edu for some help! (archive.org is probably down)')
-        # TODO:improve error checking, add mailto link
+        # TODO:improve error checking, add mailto link s
 
     xml_doc = result.content
     soup = BeautifulSoup(xml_doc,"html.parser")
