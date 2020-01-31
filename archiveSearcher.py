@@ -2,7 +2,7 @@
 import array
 import webScraper
 from internetarchive import search_items
-
+from webScraper import title_text
 
 def findYear(year_in):
     year_raw = year_in
@@ -19,12 +19,16 @@ def findYear(year_in):
             stringed_item = stringed_item[16:100]  # cut off unnecessary text
             stringed_item = stringed_item.replace("'}", "")  # strings are immutable. get rid of formatting
             shows_link = "http://archive.org/details/%s" % stringed_item
+            print(shows_link)
 
-            webScraper.findTitle(year_int)
-            #print(shows_link + "   ")
+        webScraper.findTitle(year_int)
 
+        for x in range(0, len(title_text)):
+            print(title_text[x])
 
-        print("Found %i shows! start exploring!" % i)
+        if len(title_text)==i:
+            print('FOUND ALL OF THEM ')
+
 
     else:
         print("ERROR: GD ONLY PLAYED FROM 1965 to 1995!! TRY AGAIN")
