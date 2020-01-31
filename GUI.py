@@ -1,8 +1,19 @@
 #uses archiveSearch and makes a little GUI
 from tkinter import *
 from tkinter import messagebox
-import archiveSearcher
+
+from webScraper import  *
 import webScraper
+
+def searchTheArchive(year):
+    webScraper.find_item(year)
+    webScraper.findTitle(year)
+
+    num_items = len(item_text)
+
+    for x in range(0, num_items):
+        print(item_name[x] + "  :  http://archive.org/details/" + item_text[x])
+    ()
 
 def run():
 
@@ -21,7 +32,7 @@ def run():
 
     for i in range(1965,1996):
         x=str(i)
-        x=Button(root,text=x,bg="NavajoWhite3",fg="black",command=lambda i=i :archiveSearcher.findYear(i)) #
+        x=Button(root,text=x,bg="NavajoWhite3",fg="black",command=lambda i=i :searchTheArchive(i)) #
         x.pack(side=TOP,fill=X)
 
     def on_closing():
