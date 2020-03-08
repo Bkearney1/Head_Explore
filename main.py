@@ -2,6 +2,7 @@ import webScraper
 from webScraper import *
 import player
 import webScraper
+import threading
 import GUI
 
 GUI.run()

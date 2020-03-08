@@ -75,5 +75,5 @@ def get_setlist_and_mp3s (URL):
         set_list[i] = set_list[i].replace("-&gt;","")
         set_list[i] = set_list[i].replace("&gt;", "")
         set_list[i] = set_list[i].replace("//", "")
-        print(set_list[i] +" : "+ set_mp3s[i])
+
     ()
