@@ -1,3 +1,6 @@
+import time
+from sqlite3.dbapi2 import Time
+
 import webScraper
 favorite_URLS = []
 favorite_titles = []
@@ -8,9 +11,42 @@ def printFavorites():
 
     ()
 
+def remove_item(name,link):
+    favorite_URLS.clear()
+    favorite_titles.clear()
+
+    getFavsFromTXT()
+
+
+    for  y in range (0, len(favorite_URLS)):
+       if(str(favorite_URLS[y]).replace("\n","") == link):
+            favorite_URLS.pop(y)
+            favorite_titles.pop(y)
+
+    f = open("names.txt", "w")
+    for x in range (0, len(favorite_titles)):
+        print(favorite_titles[x])
+        f.write(favorite_titles[x]+"\n");
+    f.close()
+
+    f = open("links.txt", "w")
+    for x in range(0, len(favorite_URLS)):
+
+        f.write(favorite_URLS[x] + "\n");
+    f.close()
+
+    getFavsFromTXT()
+
+
+
+
+
+
+
 def add_Favorites(set_name, set_link):
     f=open("links.txt","a")
     f.write(set_link+"\n");
+
     f.close()
 
     f=open("names.txt","a")
@@ -35,7 +71,3 @@ def get_favorite_URL(x):
 
 def get_favorite_title(x):
     return favorite_titles[x]
-
-def remove_from_favorites(URL):
-    favorite_URLS.remove(URL)
-    ()

@@ -1,5 +1,3 @@
 gd1989-07-18.sbd.walstib.435.shnf
 gd1979-01-11.sbd.miller.102430.flac16
 gd1989-07-04.118538.aud-matrix.pzm-dak5245.flac16
-gd1977-05-08.aud.moore.cribbs.28301.shnf
-gd74-07-19.sbd.symons.12381.sbeok.shnf

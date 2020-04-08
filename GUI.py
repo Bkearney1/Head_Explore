@@ -43,7 +43,7 @@ def run():
             fav_button = Button(setlist_details_window, text="Add show to favorites", bg="gold", command = lambda : favoriteManager.add_Favorites(set_title, URL))
             fav_button.pack(side=TOP, fill=X)
         if(fav_flag==1):
-            fav_button = Button(setlist_details_window, text="Remove show from favorites", bg="goldenrod",command=lambda: favoriteManager.add_Favorites(set_title, URL))
+            fav_button = Button(setlist_details_window, text="Remove show from favorites", bg="goldenrod",command=lambda: favoriteManager.remove_item(set_title, URL))
             fav_button.pack(side=TOP, fill=X)
 
         y = Button(setlist_details_window, text="⏵/⏸", bg="red", command=pause)
@@ -113,10 +113,14 @@ def run():
         new_window.geometry("300x832")
         favoriteManager.getFavsFromTXT()
         for i in range (0, len(favoriteManager.favorite_titles)) :
-            i=Button(new_window,text=favoriteManager.get_favorite_title(i), bg="OliveDrab",command= lambda i=i : get_show_details( str(favoriteManager.get_favorite_URL(i)).replace(" ",""),favoriteManager.get_favorite_title(i),1))
+            i=Button(new_window,text=favoriteManager.get_favorite_title(i), bg="OliveDrab",command= lambda i=i : rebuild_and_getfavorites(i))
             i.pack(side=TOP, fill=X)
 
     ()
+    def rebuild_and_getfavorites(index):
+        favoriteManager.getFavsFromTXT()
+        get_show_details(str(favoriteManager.get_favorite_URL(index)).replace(" ", ""),
+                         favoriteManager.get_favorite_title(index), 1)
 
     fav_button = Button(root, text="Favorites", bg="indian red", command=open_favs)
     fav_button.pack(side=TOP, fill=X)
