@@ -50,13 +50,18 @@ def run():
         y.pack(side=TOP, fill = X)
 
 
+
+        curr=0
         for i in range(0, len(set_list)):
-            x = Button(setlist_details_window, text=str(set_list[i]), bg="slate gray", fg="black",command=lambda i=i: player.playSong(set_mp3s[i]))
+            x = Button(setlist_details_window, text=str(set_list[i]), bg="slate gray", fg="black",command=lambda i=i: player.playSong(set_mp3s[i],i))
             x.pack(side=TOP, fill=X)
 
-            def skip():
-                print(i)
+
     ()
+    def delayed_skip():
+
+        player.play_next()
+
 
     def pause():
         player.pause()
@@ -108,7 +113,7 @@ def run():
         new_window.geometry("300x832")
         favoriteManager.getFavsFromTXT()
         for i in range (0, len(favoriteManager.favorite_titles)) :
-            i=Button(new_window,text=favoriteManager.get_favorite_title(i), bg="OliveDrab",command= lambda i=i : get_show_details( str(favoriteManager.get_favorite_URL(i)).replace(" ",""),favoriteManager.get_favorite_title(i),1,i))
+            i=Button(new_window,text=favoriteManager.get_favorite_title(i), bg="OliveDrab",command= lambda i=i : get_show_details( str(favoriteManager.get_favorite_URL(i)).replace(" ",""),favoriteManager.get_favorite_title(i),1))
             i.pack(side=TOP, fill=X)
 
     ()
